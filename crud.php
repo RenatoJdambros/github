@@ -12,8 +12,77 @@
     
 </head>
     <body>
+        <!--Chama informações-->
      <?php require_once 'Processo.php'; ?>
 
+     <!--Se a sessão é iniciada, configura a mensagem a ser exibita-->
+     <?php
+    if (isset($_SESSION['message'])):?>
+
+    <!--Bootstap na chamada de mensagem-->
+    <div class="alert alert-<?=$_SESSION['msg_type']?>">
+
+    <?php 
+
+    echo $_SESSION['message'];
+    unset(($_SESSION)['message']);
+
+    ?>
+
+    </div>
+    <?php endif ?>
+
+
+         <div class="container">
+     <?php 
+        //acessa banco de dados e seleciona informações do banco "dados" ou informa erro
+        $mysqli = new mysqli('localhost','root','','crud') or die(mysqli_error($mysqli));
+        $result = $mysqli->query("SELECT * FROM dados") or die ($mysqli->error);
+        //pre_r($result);
+        ?>
+
+        <!--cabeçalho da tabela com bootstrap-->
+        <div class="row justify-content-center">
+            <table class="table">
+                <thead>
+                    <tr>
+                        <th>Nome</th>
+                        <th>Sexo</th>
+                        <th>Empresa</th>
+                        <th>Função</th>
+                        <th colspan="2">Ação</th>
+                    </tr>
+                </thead>
+
+            <!--imprime em uma nova linha os dados importados do banco, depois de realizado o tratamento e diagramados no bootstrap-->
+             <?php while ($row = $result->fetch_assoc()): ?>
+                    <tr>
+                        <td><?php echo $row['nome']; ?></td>
+                        <td><?php echo $row['sexo'];?></td>
+                        <td><?php echo $row['empresa'];?></td>
+                        <td><?php echo $row['funcao'];?></td>
+                            <!--Botão de editar-->
+                             <td> <a href="crud.php?edit=<?php echo $row['id'];?>"
+                            class="btn btn-info">Editar</a>
+                            <!--Botão de Deletar-->
+                             <td> <a href="processo.php?deletar=<?php echo $row['id'];?>"
+                            class="btn btn-danger">Deletar</a>
+                        </td>
+                    </tr>
+             <?php endwhile; ?>
+                </table>    
+        </div>
+
+        <?php
+
+        //tratamento das variáveis do banco de dados
+        function pre_r( $array ){
+            echo '<pre>';
+            print_r($array);
+            echo '</pre>';
+        }
+         ?>
+    <!--formulário com bootstrap e metodo POST -->
     <div class="row justify-content-center">
    
    <form action="Processo.php" method="POST">
@@ -39,7 +108,7 @@
 
    </form>
 </div>
-
+</div>
 
    
 
