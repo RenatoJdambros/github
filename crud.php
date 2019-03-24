@@ -12,11 +12,11 @@
     
 </head>
     <body>
-     <?php require_once '/var/www/public_html/config.php'; ?>
+     <?php require_once 'Processo.php'; ?>
 
     <div class="row justify-content-center">
    
-   <form action="" method="POST">
+   <form action="Processo.php" method="POST">
     <div class="form-group"> 
     <label>Nome</label>
     <input type="text" name="name" class="form-control" value="Digite seu nome">
