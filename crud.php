@@ -62,7 +62,7 @@
                         <td><?php echo $row['empresa'];?></td>
                         <td><?php echo $row['funcao'];?></td>
                             <!--Botão de editar-->
-                             <td> <a href="crud.php?edit=<?php echo $row['id'];?>"
+                             <td> <a href="crud.php?editar=<?php echo $row['id'];?>"
                             class="btn btn-info">Editar</a>
                             <!--Botão de Deletar-->
                              <td> <a href="processo.php?deletar=<?php echo $row['id'];?>"
@@ -86,24 +86,32 @@
     <div class="row justify-content-center">
    
    <form action="Processo.php" method="POST">
+    <input type="hidden" name="id" value="<?php echo $id; ?>">
     <div class="form-group"> 
     <label>Nome</label>
-    <input type="text" name="name" class="form-control" value="Digite seu nome">
+    <input type="text" name="name" class="form-control" value="<?php echo $name ?>" placeholder="Digite seu nome">
     </div>  
     <div class="form-group"> 
     <label>Sexo</label>
-    <input type="text" name="sex" class="form-control" value="Digite seu sexo">
+    <input type="text" name="sex" class="form-control" value="<?php echo $sex ?>" placeholder="Digite seu sexo">
     </div>
     <div class="form-group"> 
     <label>Empresa</label>
-    <input type="text" name="company" class="form-control" value="Digite sua empresa">
+    <input type="text" name="company" class="form-control" value="<?php echo $company ?>" placeholder="Digite sua empresa">
     </div>
     <div class="form-group"> 
     <label>Função</label>
-    <input type="text" name="function" class="form-control" value="Digite sua função">
+    <input type="text" name="function" class="form-control" value="<?php echo $function ?>" placeholder="Digite sua função">
     </div>
     <div class="form-group"> 
+    <!--Verifica se a variável 'update' esta com valor true, indicando que se trata de uma alteração -->
+    <?php 
+    if ($update == true): ?> 
+     <button type="submit" name="update" class="btn btn-info">Atualizar</button>
+    <?php 
+    else: ?>
     <button type="submit" name="save" class="btn btn-primary">Salvar</button>
+    <?php endif; ?>
     </div>
 
    </form>
