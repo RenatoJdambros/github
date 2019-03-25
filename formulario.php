@@ -8,7 +8,7 @@
     <!--Bootstrap CSS--> 
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.1/css/bootstrap.min.css" integrity="sha384-WskhaSGFgHYWDcbwN70/dfYBj47jz9qbsMId/iRN3ewGhXQFZCSftd1LZCfmhktB" crossorigin="anonymous">
 
-    <title>registros</title>
+    <title>Cadastro</title>
     
 </head>
     <body>
@@ -41,37 +41,8 @@
         //pre_r($result);
         ?>
 
-        <!--cabeçalho da tabela com bootstrap-->
-        <div class="row justify-content-center">
-            <table class="table">
-                <thead>
-                    <tr>
-                        <th>Nome</th>
-                        <th>Sexo</th>
-                        <th>Empresa</th>
-                        <th>Função</th>
-                        <th colspan="2">Ação</th>
-                    </tr>
-                </thead>
 
-            <!--imprime em uma nova linha os dados importados do banco, depois de realizado o tratamento e diagramados no bootstrap-->
-             <?php while ($row = $result->fetch_assoc()): ?>
-                    <tr>
-                        <td><?php echo $row['nome']; ?></td>
-                        <td><?php echo $row['sexo'];?></td>
-                        <td><?php echo $row['empresa'];?></td>
-                        <td><?php echo $row['funcao'];?></td>
-                            <!--Botão de editar-->
-                             <td> <a href="crud.php?editar=<?php echo $row['id'];?>"
-                            class="btn btn-info">Editar</a>
-                            <!--Botão de Deletar-->
-                             <td> <a href="processo.php?deletar=<?php echo $row['id'];?>"
-                            class="btn btn-danger">Deletar</a>
-                        </td>
-                    </tr>
-             <?php endwhile; ?>
-                </table>    
-        </div>
+<div align="center" class="p-3 mb-3 bg-primary text-white">INFORME SEUS DADOS</div>
 
         <?php
 
@@ -88,36 +59,33 @@
    <form action="Processo.php" method="POST">
     <input type="hidden" name="id" value="<?php echo $id; ?>">
     <div class="form-group"> 
-    <label>Nome</label>
+    <label>Nome:</label>
     <input type="text" name="name" class="form-control" value="<?php echo $name ?>" placeholder="Digite seu nome">
     </div>  
     <div class="form-group"> 
-    <label>Sexo</label>
+    <label>Sexo:</label>
     <input type="text" name="sex" class="form-control" value="<?php echo $sex ?>" placeholder="Digite seu sexo">
     </div>
     <div class="form-group"> 
-    <label>Empresa</label>
+    <label>Empresa:</label>
     <input type="text" name="company" class="form-control" value="<?php echo $company ?>" placeholder="Digite sua empresa">
     </div>
     <div class="form-group"> 
-    <label>Função</label>
+    <label>Função:</label>
     <input type="text" name="function" class="form-control" value="<?php echo $function ?>" placeholder="Digite sua função">
     </div>
     <div class="form-group"> 
     <!--Verifica se a variável 'update' esta com valor true, indicando que se trata de uma alteração -->
     <?php 
     if ($update == true): ?> 
-     <button type="submit" name="update" class="btn btn-info container">Atualizar</button>
+     <button type="submit" name="update" class="btn btn-info">Atualizar</button>
     <?php 
     else: ?>
     <button type="submit" name="save" class="btn btn-primary container">Salvar</button>
-    <div></div>
     <?php endif; ?>
-    <p></p>
-    <button type="submit" name="voltar" class="btn btn-danger container">voltar</button>
     </div>
+    <button type="submit" name="registros" class="btn btn-info container">ir para registros</button>
    
-    
 
    </form>
 </div>
